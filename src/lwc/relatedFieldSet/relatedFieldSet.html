@@ -1,0 +1,38 @@
+<!--
+  /**
+   * relatedFieldSet Markup
+   * Description: fieldset
+   * @author: Tiaan Swart (tswart@deloitte.co.nz)
+   * @date: 2019-05-18
+   **/
+ -->
+<template>
+    <div if:true={metadataError} class="slds-notify slds-notify_alert slds-theme_alert-texture slds-theme_error" role="alert">
+        <span class="slds-assistive-text">Error message: </span>
+        {metadataError}
+    </div>
+    <lightning-card if:true={isLoading} title="">
+        <lightning-spinner class="loadingSpinner" variant="brand"></lightning-spinner>
+    </lightning-card>
+    <div class="slds-hide">
+        <lightning-record-edit-form if:true={showForm}
+                                    record-id={recordId}
+                                    object-api-name={sObjectName}
+                                    onload={handleFormLoad}>
+            <lightning-output-field field-name={relatedField}></lightning-output-field>
+        </lightning-record-edit-form>
+    </div>
+    <c-fieldset if:true={showRelatedFieldSet}
+                record-id={relatedRecordId}
+                show-title={showTitle}
+                str-title={strTitle}
+                icon-name= {iconName}
+                columns-large={columnsLarge}
+                columns-medium={columnsMedium}
+                columns-small={columnsSmall}
+                field-set-name={fieldSetName}
+                is-editable={isEditable}
+                always-editing={alwaysEditing}
+                save-message-title={saveMessageTitle}
+                save-message={saveMessage}></c-fieldset>
+</template>

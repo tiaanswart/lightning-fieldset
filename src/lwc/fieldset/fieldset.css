@@ -1,0 +1,11 @@
+/**
+ * @author       Tiaan Swart (tswart@deloitte.co.nz)
+ * @date         2019-05-18
+ * @description  fieldset.css
+ * 
+ * CHANGE LOG
+ * 2019-05-18 - Initial Setup of fieldset.css
+ **/
+.slds-notify {
+    border-radius: 5px;
+}

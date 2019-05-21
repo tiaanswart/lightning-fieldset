@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<LightningComponentBundle xmlns="http://soap.sforce.com/2006/04/metadata">
+    <apiVersion>45.0</apiVersion>
+    <description>FieldSet Lightning Web Component</description>
+    <isExposed>true</isExposed>
+    <targets>
+        <target>lightning__RecordPage</target>
+    </targets>
+    <targetConfigs>
+        <targetConfig targets="lightning__RecordPage">
+            <property name="showTitle" type="Boolean" label="Show title" default="true"/>
+            <property name="strTitle" type="String" label="Enter a title" description="Enter a custom title or leave blank to use FieldSet label"/>
+            <property name="iconName" type="String" label="Enter an icon name" description="Enter a valid icon name to display from SLDS"/>
+            <property name="columnsLarge" type="String" datasource="1,2,3" label="Columns (Large Device)" default="3" required="true"/>
+            <property name="columnsMedium" type="String" datasource="1,2,3" label="Columns (Medium Device)" default="2" required="true"/>
+            <property name="columnsSmall" type="String" datasource="1,2,3" label="Columns (Small Device)" default="1" required="true"/>
+            <property name="fieldSetName" type="String" label="Enter the Fieldset API Name" required="true"/>
+            <property name="isEditable" type="Boolean" label="Enable Editing" default="true"/>
+            <property name="alwaysEditing" type="Boolean" label="Force Editing State"/>
+            <property name="saveMessageTitle" type="String" label="Save Message Title" default="Success" required="true"/>
+            <property name="saveMessage"
+                      type="String"
+                      label="Save Message"
+                      description="Custom message to display when the record has been saved"
+                      default="Record has been saved."
+                      required="true"/>
+        </targetConfig>
+    </targetConfigs>
+    <masterLabel>FieldSet</masterLabel>
+</LightningComponentBundle>
