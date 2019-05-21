@@ -11,7 +11,7 @@ Lightning Web Component to show a Record Form for viewing and editing. Construct
 # Demo:
 
 <br/>
-<img alt="Demo" src="demo.gif" width="400px"/>
+<img alt="Demo" src="demo.gif"/>
 <br/>
 
 # Setup after deployment
