@@ -63,6 +63,11 @@ public with sharing class FieldsetController {
             if (fieldSets.containsKey(fieldSetName)) {
                 // Get the Object fields
                 Map<String, SObjectField> fields = sObjectResult.fields.getMap();
+                // Check if the object has a record type id field
+                if (fields.containsKey('RecordTypeId')) {
+                    // Get the records record type Id
+                    response.recordTypeId = (String) ((SObject) Database.query('SELECT RecordTypeId FROM '+response.sObjectName+' WHERE Id =: recordId')).get('RecordTypeId');
+                }
                 // Get the Label
                 response.fieldSetLabel = fieldSets.get(fieldSetName).getLabel();
                 System.debug('### getMetadata response.fieldSetLabel >>> '+response.fieldSetLabel);
@@ -119,6 +124,9 @@ public with sharing class FieldsetController {
     }
 
     public class MetadataResponse {
+
+        @AuraEnabled
+        public String recordTypeId;
 
         @AuraEnabled
         public String fieldSetLabel;

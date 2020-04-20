@@ -6,8 +6,15 @@
  * CHANGE LOG
  * 2019-05-18 - Initial Setup of fieldset
  **/
-import { LightningElement, api, wire, track } from 'lwc';
-import { ShowToastEvent } from 'lightning/platformShowToastEvent';
+import {
+    LightningElement,
+    api,
+    wire,
+    track
+} from 'lwc';
+import {
+    ShowToastEvent
+} from 'lightning/platformShowToastEvent';
 import getFieldSetMetadata from '@salesforce/apex/FieldsetController.getFieldSetMetadata';
 
 export default class Fieldset extends LightningElement {
@@ -25,6 +32,7 @@ export default class Fieldset extends LightningElement {
     @api saveMessageTitle;
     @api saveMessage;
     @api recordId;
+    @api recordTypeId;
 
     // Record props
     @track sObjectName;
@@ -51,21 +59,33 @@ export default class Fieldset extends LightningElement {
     }
 
     // Get the SObjectType and the Fields
-    @wire(getFieldSetMetadata, { recordId: '$recordId', fieldSetName: '$fieldSetName' })
-    wiredFieldSetMetadata({ error, data }) {
+    @wire(getFieldSetMetadata, {
+        recordId: '$recordId',
+        fieldSetName: '$fieldSetName'
+    })
+    wiredFieldSetMetadata({
+        error,
+        data
+    }) {
         this.isLoading = true;
         if (data) {
             // Get the FieldSet Name if we have no custom title
             if (!this.strTitle) this.strTitle = data.fieldSetLabel;
+            // Get the Record Type Id
+            this.recordTypeId = data.recordTypeId;
             // Get the SObject Name
             this.sObjectName = data.sObjectName;
             // If we have record fields, Remove them all
-            if (!!this.recordFields.length) while(this.recordFields.length > 0) this.recordFields.pop();
+            if (!!this.recordFields.length)
+                while (this.recordFields.length > 0) this.recordFields.pop();
             // Get the fields metadata and populate fields
             data.fieldsMetadata.forEach((fd) => {
                 // Get valid JSON
                 const fieldProperties = JSON.parse(fd);
-                const { fieldSetProperties, fieldDescribeProperties } = fieldProperties;
+                const {
+                    fieldSetProperties,
+                    fieldDescribeProperties
+                } = fieldProperties;
                 // Add the field
                 this.recordFields.push({
                     name: fieldDescribeProperties.name,

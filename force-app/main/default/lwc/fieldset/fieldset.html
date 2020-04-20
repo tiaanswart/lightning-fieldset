@@ -7,41 +7,31 @@
    **/
  -->
 <template>
-    <div if:true={metadataError} class="slds-notify slds-notify_alert slds-theme_alert-texture slds-theme_error" role="alert">
+    <div if:true={metadataError} class="slds-notify slds-notify_alert slds-theme_alert-texture slds-theme_error"
+        role="alert">
         <span class="slds-assistive-text">Error message: </span>
         {metadataError}
     </div>
-    <lightning-record-edit-form if:true={showForm}
-                                record-id={recordId}
-                                object-api-name={sObjectName}
-                                onsubmit={handleFormSubmit}
-                                onsuccess={handleFormSuccess}
-                                onerror={handleFormError}>
+    <lightning-record-edit-form if:true={showForm} record-id={recordId} record-type-id={recordTypeId}
+        object-api-name={sObjectName} onsubmit={handleFormSubmit} onsuccess={handleFormSuccess}
+        onerror={handleFormError}>
         <lightning-card title={cardTitle} variant="base" icon-name={iconName}>
             <lightning-spinner if:true={showSpinner} class="loadingSpinner" variant="brand"></lightning-spinner>
             <lightning-button-group class="slds-m-top_small slds-theme_brand" slot="actions">
-                <lightning-button class="slds-theme_brand"
-                                  variant="brand"
-                                  label="Save"
-                                  if:true={canSave}
-                                  type="submit"></lightning-button>
-                <lightning-button label={editLabel}
-                                  if:true={canEdit}
-                                  onclick={toggleEdit}></lightning-button>
+                <lightning-button class="slds-theme_brand" variant="brand" label="Save" if:true={canSave} type="submit">
+                </lightning-button>
+                <lightning-button label={editLabel} if:true={canEdit} onclick={toggleEdit}></lightning-button>
             </lightning-button-group>
             <div class="slds-card__body_inner">
                 <lightning-messages></lightning-messages>
                 <lightning-layout multiple-rows="true">
-                    <lightning-layout-item for:each={recordFields}
-                                           for:item="field"
-                                           key={fieldName}
-                                           class="slds-p-around_xx-small"
-                                           size={layoutSizeLarge}
-                                           large-device-size={layoutSizeLarge}
-                                           medium-device-size={layoutSizeMedium}
-                                           small-device-size={layoutSizeSmall}>
-                        <lightning-input-field if:true={field.editable} field-name={field.name} onchange={setHasChanged}></lightning-input-field>
-                        <lightning-output-field if:false={field.editable} field-name={field.name}></lightning-output-field>
+                    <lightning-layout-item for:each={recordFields} for:item="field" key={fieldName}
+                        class="slds-p-around_xx-small" size={layoutSizeLarge} large-device-size={layoutSizeLarge}
+                        medium-device-size={layoutSizeMedium} small-device-size={layoutSizeSmall}>
+                        <lightning-input-field if:true={field.editable} field-name={field.name}
+                            onchange={setHasChanged}></lightning-input-field>
+                        <lightning-output-field if:false={field.editable} field-name={field.name}>
+                        </lightning-output-field>
                     </lightning-layout-item>
                 </lightning-layout>
             </div>
