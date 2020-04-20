@@ -26,8 +26,8 @@
                 <lightning-messages></lightning-messages>
                 <lightning-layout multiple-rows="true">
                     <lightning-layout-item for:each={recordFields} for:item="field" key={fieldName}
-                        class="slds-p-around_xx-small" size={layoutSizeLarge} large-device-size={layoutSizeLarge}
-                        medium-device-size={layoutSizeMedium} small-device-size={layoutSizeSmall}>
+                        class="slds-p-around_xx-small" size={layoutSizeSmall} large-device-size={layoutSizeLarge}
+                        medium-device-size={layoutSizeMedium}>
                         <lightning-input-field if:true={field.editable} field-name={field.name}
                             onchange={setHasChanged}></lightning-input-field>
                         <lightning-output-field if:false={field.editable} field-name={field.name}>
